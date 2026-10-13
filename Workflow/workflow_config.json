@@ -1,0 +1,41 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "dbname": "weather",
+    "user": "weather_user",
+    "password": "weather_password"
+  },
+  "cities": [
+    { "name": "London",   "latitude": 51.5074, "longitude": -0.1278 },
+    { "name": "New York", "latitude": 40.7128, "longitude": -74.0060 },
+    { "name": "Tokyo",    "latitude": 35.6762, "longitude": 139.6503 },
+    { "name": "Sydney",   "latitude": -33.8688, "longitude": 151.2093 }
+  ],
+  "open_meteo": {
+    "forecast_url": "https://api.open-meteo.com/v1/forecast",
+    "archive_url": "https://archive-api.open-meteo.com/v1/archive",
+    "forecast_days": 5,
+    "history_days": 45,
+    "min_interval_seconds": 1.0,
+    "timeout_seconds": 30
+  },
+  "pipeline": {
+    "lookback_hours": 168,
+    "forecast_horizon_hours": 24,
+    "rolling_window_hours": 24,
+    "validation_split": 0.2,
+    "train_epochs": 30,
+    "train_batch_size": 64,
+    "random_seed": 42
+  },
+  "paths": {
+    "scaled_features": "data/scaled_features.parquet",
+    "windows": "data/windows.npz",
+    "model": "Model/lstm_weather_model.h5",
+    "scaler": "Model/scaler.pkl",
+    "forecast_output": "Forecast/forecast.json",
+    "eda_reports": "EDA/reports",
+    "run_report": "data/pipeline_run.json"
+  }
+}

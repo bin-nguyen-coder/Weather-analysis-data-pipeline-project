@@ -1,0 +1,38 @@
+{
+  "started_at": "2026-10-13T08:35:42Z",
+  "stages": {
+    "predict": {
+      "status": "success",
+      "started_at": "2026-10-13T08:35:42Z",
+      "finished_at": "2026-10-13T08:36:02Z",
+      "result": {
+        "forecast_path": "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\Forecast\\forecast.json",
+        "cities": [
+          "London",
+          "New York",
+          "Sydney",
+          "Tokyo"
+        ],
+        "horizon_hours": 24
+      }
+    },
+    "eda": {
+      "status": "success",
+      "started_at": "2026-10-13T08:36:02Z",
+      "finished_at": "2026-10-13T08:36:08Z",
+      "result": {
+        "report_dir": "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\EDA\\reports",
+        "charts": [
+          "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\EDA\\reports\\temperature_trends.png",
+          "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\EDA\\reports\\humidity_distribution.png",
+          "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\EDA\\reports\\correlation_heatmap.png",
+          "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\EDA\\reports\\temp_vs_humidity.png",
+          "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\EDA\\reports\\daily_average_temperature.png"
+        ],
+        "summary_path": "C:\\Users\\Admin\\Weather-analysis-data-pipeline-project\\EDA\\reports\\summary_statistics.json"
+      }
+    }
+  },
+  "finished_at": "2026-10-13T08:36:08Z",
+  "overall_status": "success"
+}

@@ -1,0 +1,112 @@
+# =============================================================================
+# Weather Analysis Data Pipeline - Infrastructure
+# -----------------------------------------------------------------------------
+# Services:
+#   * postgres          : PostgreSQL 16 (pipeline warehouse), exposed on 5432
+#   * airflow-init      : one-shot setup (installs deps, migrates metadata DB,
+#                         creates the admin user)
+#   * airflow-scheduler : Apache Airflow scheduler (LocalExecutor)
+#   * airflow-webserver : Airflow Web UI on http://localhost:8080
+#
+# The Airflow DAGs folder points at ./Orchestration inside the container while
+# the whole repository is mounted at /opt/airflow/project so the DAG can import
+# the pipeline modules (Ingestion, Cleaning, Transform, ...).
+# =============================================================================
+
+name: weather-pipeline
+
+# -----------------------------------------------------------------------------
+# Shared airflow configuration (YAML anchors)
+# -----------------------------------------------------------------------------
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.10.2
+  environment: &airflow-common-env
+    # LocalExecutor: each task runs inside the scheduler process.
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS: "false"
+    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/project/Orchestration
+    # Demo-only Fernet key (base64 of 32 zero bytes) - replace in production.
+    AIRFLOW__CORE__FERNET_KEY: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+    # Airflow metadata lives in the same PostgreSQL instance (weather DB).
+    # `airflow db migrate` creates all required airflow_* tables.
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://weather_user:weather_password@postgres:5432/weather
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    AIRFLOW__WEBSERVER__SECRET_KEY: weather-pipeline-demo-secret
+  volumes: &airflow-volumes
+    - ./:/opt/airflow/project
+    - ./requirements.txt:/opt/airflow/requirements.txt:ro
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+  # -------------------------------------------------------------------------
+  # PostgreSQL (pipeline warehouse)
+  # -------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: weather-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: weather
+      POSTGRES_USER: weather_user
+      POSTGRES_PASSWORD: weather_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U weather_user -d weather"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # -------------------------------------------------------------------------
+  # Airflow bootstrap
+  # -------------------------------------------------------------------------
+  airflow-init:
+    <<: *airflow-common
+    container_name: weather-airflow-init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        set -e
+        echo "Installing pipeline dependencies..."
+        pip install --no-cache-dir -r /opt/airflow/requirements.txt
+        echo "Running Airflow metadata migration..."
+        airflow db migrate
+        echo "Creating admin user (admin / admin)..."
+        airflow users create \
+          --username admin \
+          --firstname Weather \
+          --lastname Admin \
+          --role Admin \
+          --email admin@example.com \
+          --password admin
+        echo "Airflow initialization complete."
+    restart: on-failure
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: weather-airflow-scheduler
+    command: airflow scheduler
+    restart: unless-stopped
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: weather-airflow-webserver
+    command: airflow webserver
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_data:

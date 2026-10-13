@@ -1,0 +1,193 @@
+{
+  "generated_at": "2026-10-13T08:36:08Z",
+  "cities": {
+    "London": {
+      "observation_count": 1192,
+      "first_observation": "2026-08-29 00:00:00+00:00",
+      "last_observation": "2026-10-17 23:00:00+00:00",
+      "temperature_c": {
+        "mean": 16.722,
+        "std": 3.618,
+        "min": 7.3,
+        "max": 26.4
+      },
+      "relative_humidity": {
+        "mean": 73.203,
+        "std": 15.338,
+        "min": 32.0,
+        "max": 100.0
+      },
+      "dew_point_c": {
+        "mean": 11.522,
+        "std": 3.494,
+        "min": 1.4,
+        "max": 18.4
+      },
+      "pressure_msl": {
+        "mean": 1019.163,
+        "std": 6.738,
+        "min": 1000.4,
+        "max": 1036.0
+      },
+      "wind_speed_kmh": {
+        "mean": 10.614,
+        "std": 4.791,
+        "min": 0.0,
+        "max": 25.4
+      },
+      "heat_index_c": {
+        "mean": 16.722,
+        "std": 3.618,
+        "min": 7.3,
+        "max": 26.4
+      },
+      "wind_chill_c": {
+        "mean": 16.662,
+        "std": 3.763,
+        "min": 5.094,
+        "max": 26.4
+      }
+    },
+    "New York": {
+      "observation_count": 1192,
+      "first_observation": "2026-08-29 00:00:00+00:00",
+      "last_observation": "2026-10-17 23:00:00+00:00",
+      "temperature_c": {
+        "mean": 19.179,
+        "std": 4.682,
+        "min": 7.3,
+        "max": 30.8
+      },
+      "relative_humidity": {
+        "mean": 71.565,
+        "std": 17.782,
+        "min": 28.0,
+        "max": 100.0
+      },
+      "dew_point_c": {
+        "mean": 13.391,
+        "std": 5.208,
+        "min": -9.1,
+        "max": 23.6
+      },
+      "pressure_msl": {
+        "mean": 1017.813,
+        "std": 6.267,
+        "min": 998.9,
+        "max": 1031.5
+      },
+      "wind_speed_kmh": {
+        "mean": 10.446,
+        "std": 6.443,
+        "min": 0.0,
+        "max": 36.7
+      },
+      "heat_index_c": {
+        "mean": 19.231,
+        "std": 4.794,
+        "min": 7.3,
+        "max": 32.43
+      },
+      "wind_chill_c": {
+        "mean": 19.119,
+        "std": 4.841,
+        "min": 3.057,
+        "max": 30.8
+      }
+    },
+    "Sydney": {
+      "observation_count": 1192,
+      "first_observation": "2026-08-29 00:00:00+00:00",
+      "last_observation": "2026-10-17 23:00:00+00:00",
+      "temperature_c": {
+        "mean": 17.356,
+        "std": 4.329,
+        "min": 7.9,
+        "max": 32.8
+      },
+      "relative_humidity": {
+        "mean": 69.213,
+        "std": 19.076,
+        "min": 15.0,
+        "max": 100.0
+      },
+      "dew_point_c": {
+        "mean": 10.909,
+        "std": 3.858,
+        "min": -1.4,
+        "max": 20.1
+      },
+      "pressure_msl": {
+        "mean": 1023.418,
+        "std": 6.495,
+        "min": 1005.7,
+        "max": 1034.8
+      },
+      "wind_speed_kmh": {
+        "mean": 11.261,
+        "std": 6.12,
+        "min": 0.2,
+        "max": 33.9
+      },
+      "heat_index_c": {
+        "mean": 17.363,
+        "std": 4.346,
+        "min": 7.9,
+        "max": 32.8
+      },
+      "wind_chill_c": {
+        "mean": 17.326,
+        "std": 4.388,
+        "min": 6.733,
+        "max": 32.8
+      }
+    },
+    "Tokyo": {
+      "observation_count": 1192,
+      "first_observation": "2026-08-29 00:00:00+00:00",
+      "last_observation": "2026-10-17 23:00:00+00:00",
+      "temperature_c": {
+        "mean": 21.869,
+        "std": 3.217,
+        "min": 14.0,
+        "max": 31.4
+      },
+      "relative_humidity": {
+        "mean": 81.648,
+        "std": 13.784,
+        "min": 37.0,
+        "max": 100.0
+      },
+      "dew_point_c": {
+        "mean": 18.335,
+        "std": 3.513,
+        "min": 8.9,
+        "max": 25.8
+      },
+      "pressure_msl": {
+        "mean": 1015.108,
+        "std": 6.023,
+        "min": 993.9,
+        "max": 1029.9
+      },
+      "wind_speed_kmh": {
+        "mean": 7.334,
+        "std": 3.728,
+        "min": 0.3,
+        "max": 29.5
+      },
+      "heat_index_c": {
+        "mean": 22.093,
+        "std": 3.805,
+        "min": 14.0,
+        "max": 38.739
+      },
+      "wind_chill_c": {
+        "mean": 21.869,
+        "std": 3.217,
+        "min": 14.0,
+        "max": 31.4
+      }
+    }
+  }
+}

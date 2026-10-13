@@ -1,0 +1,25 @@
+# =============================================================================
+# Weather Analysis Data Pipeline - Python dependencies
+# =============================================================================
+
+# --- HTTP + resilience (Open-Meteo REST API) -------------------------------
+requests
+tenacity
+
+# --- PostgreSQL connectivity ----------------------------------------------
+psycopg2-binary
+
+# --- Data manipulation -----------------------------------------------------
+pandas
+numpy
+
+# --- Machine learning / forecasting ----------------------------------------
+scikit-learn
+tensorflow
+
+# --- Workflow orchestration ------------------------------------------------
+apache-airflow
+
+# --- Visualization / EDA reports -------------------------------------------
+matplotlib
+seaborn
